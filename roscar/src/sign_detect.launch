@@ -1,0 +1,13 @@
+<launch>
+    <arg name="image_topic" default="/usb_cam/image_raw"/>
+    <!-- arg name="session_path" default="~/.ros/find_object_2d.ini"/ -->
+
+
+	<!-- Nodes -->
+	<node name="find_object_2d" pkg="find_object_2d" type="find_object_2d" output="screen">
+		<remap from="image" to="$(arg image_topic)"/>
+		<param name="session_path" value="/home/ettc/roscar/find_my_object.bin" type="str"/>
+		<param name="gui" value="1" type="bool"/>
+	</node>
+    <node name="sign_detect" pkg="roscar" type="sign_detect.py"/>
+</launch>
